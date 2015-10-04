@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="css/login.css" type="text/css">
+		<script type="text/javascript" src="js/login.js"></script>
+	</head>
+
+	<body>
+		<h3 id = "next"><img src="images/Logo.png" class="img-rounded" alt="logo" width="80" height="80" >List Me T</h3>
+		<div class="container-fluid">
+			<h1 id = "welcome">welcome</h1>
+			<form id="login_form" role="form" method='post'>
+				<div class="form-group">
+					<label for="email">E-mail:</label>
+					<input type="email" class="form-control" id="email" placeholder="E-mail">
+				</div>
+				<div class="form-group">
+					<label for="pwd">Password:</label>
+					<input type="password" class="form-control" id="pwd" placeholder="Password">
+				</div>
+				<div class="form-group">
+					<div class="center">
+						<button type="submit" class="btn btn-warning btn-lg" ><span class="glyphicon glyphicon-check"></span> Login</button>
+						<a href="signup.html" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+					</div>
+				</div>
+			</form>
+			<br>
+			<div class="center">
+				<br><br>
+				<input id='facebook' type="image" src="images/fb.png" class="img-rounded" alt="facebook" height ="20%" width="100%" >
+				<br><br>
+				<a href="#"><img src="images/gp.png" class="img-rounded" alt="google plus" height ="20%" width="100%"></a>
+			</div>
+		</div>
+	</body>
+</html>
