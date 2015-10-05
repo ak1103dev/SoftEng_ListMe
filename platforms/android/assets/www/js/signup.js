@@ -1,52 +1,14 @@
-$(document).ready(function() {
-	$("form").submit(function(e) {
-		e.preventDefault();
+var signup = angular.module('signup', ['ionic']);
 
-		var usr = $('#usr').val();
-		var email = $('#email').val();
-		var pwd = $('#pwd').val();
-		var conpwd = $('#conpwd').val();
-		var correctPassword = true;
-		var correctInput= function() {
-			if (usr === '' || email === '' || pwd === '' || conpwd === '') {
-				return false;
-			}
-			else {
-				if (!(6 <= usr.length <= 8)) {
-					console.log("usr");
-					return false;
-				}
-				if (pwd.length < 8) {
-					console.log("pass");
-					return false;
-				}
-				if (pwd !== conpwd) {
-					correctPassword = false;
-					console.log("pass" + correctPassword);
-					return false;
-				}
-				return true;
-			}
-		}
-
-		if (correctInput()) {
-			var url = "http://research27.ml:1103/signup";
-			var data = {
-				username: usr,
-				email: email,
-				password: pwd
-			};
-			$.post(url, data, function(res) {
-				console.log(res);
-				if (res == 'signup')
-					$(location).attr('href', './login.html');
-				else
-					$("#message").text("SignUp Failed!!!");
-			});
-		}
-		else {
-			var message = "You should input correct data!!!";
-			$("#message").text(message);
-		}
-	});
+signup.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
+    if(window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+    if(window.StatusBar) {
+      StatusBar.styleDefault();
+    }
+  });
 });

@@ -1,4 +1,4 @@
-angular.module('todo', ['ionic'])
+var app = angular.module('todo', ['ionic']);
 
 
 /**
@@ -6,7 +6,8 @@ angular.module('todo', ['ionic'])
  * from local storage, and also lets us save and load the
  * last active project index.
  */
-.factory('Projects', function() {
+
+app.factory('Projects', function() {
   return {
     all: function() {
       var projectString = window.localStorage['projects'];
@@ -33,9 +34,9 @@ angular.module('todo', ['ionic'])
       window.localStorage['lastActiveProject'] = index;
     }
   }
-})
+});
 
-.controller('TodoCtrl', function($scope, $timeout, $ionicModal, Projects, $ionicSideMenuDelegate, $ionicPopup) {
+app.controller('TodoCtrl', function($scope, $timeout, $ionicModal, Projects, $ionicSideMenuDelegate, $ionicPopup) {
 
   // A utility function for creating a new project
   // with the given projectTitle
@@ -157,22 +158,22 @@ angular.module('todo', ['ionic'])
     Projects.save($scope.projects);
   }
   // A confirm dialog
- $scope.showConfirm = function(id) {
-   var confirmPopup = $ionicPopup.confirm({
-     title: 'Cancel Task',
-     template: 'Are you sure you want to cancel this task?'
-   });
-   confirmPopup.then(function(res,id) {
-     if(res) {
-       $scope.activeProject.tasks.splice(id,1);
-       Projects.save($scope.projects);
-       console.log('You are sure');
-     } else {
-       console.log('You are not sure');
-     }
-   });
- };
- $scope.showConfirmDeleteProject = function(id) {
+  $scope.showConfirm = function(id) {
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'Cancel Task',
+      template: 'Are you sure you want to cancel this task?'
+    });
+    confirmPopup.then(function(res,id) {
+      if(res) {
+        $scope.activeProject.tasks.splice(id,1);
+        Projects.save($scope.projects);
+        console.log('You are sure');
+      } else {
+        console.log('You are not sure');
+      }
+    });
+  };
+  $scope.showConfirmDeleteProject = function(id) {
    var confirmPopupDel = $ionicPopup.confirm({
      title: 'Delete Group',
      template: 'Are you sure you want to delete '+$scope.projects[id].title+' group?'
@@ -206,3 +207,5 @@ angular.module('todo', ['ionic'])
     }
   });
 });
+
+

@@ -1,44 +1,60 @@
 <!DOCTYPE html>
-<html lang="en th">
-	<head>
-		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-		<script src="bower_components/jquery/dist/jquery.min.js"></script>
-		<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="css/signup.css" type="text/css">
-		<script src="js/signup.js"></script>
-	</head>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
 
-	<body>
-		<h3 id = "next"><img src="images/Logo.png" class="img-rounded" alt="logo" width="80" height="80" >List Me T</h3>
-		<div class="container-fluid">
-			<h1 id = "signup">Sing Up</h1>
-			<span id="message"></span>
-			<form id="signup_form" role="form" method='post'>
-				<div class="form-group">
-					<label for="usr">Username</label>
-					<input type="text" class="form-control" id="usr" placeholder="6 to 8 characters">
-				</div>
-				<div class="form-group">
-					<label for="email">E-Mail</label>
-					<input type="email" class="form-control" id="email" placeholder="Enter email">
-				</div>
-				<div class="form-group">
-					<label for="pwd">Password</label>
-					<input type="password" class="form-control" id="pwd" placeholder="at least 8 characters">
-				</div>
-				<div class="form-group">
-					<label for="pwd">Confirm Password</label>
-					<input type="password" class="form-control" id="conpwd" placeholder="at least 8 characters">
-				</div>
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 
-				<div class="form-group">
-					<div class = "center">
-						<button type="submit" class="btn btn-warning btn-lg" ><span class="glyphicon glyphicon-check"></span> Submit</button>
-						<a href="login.html" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-chevron-left"></span> Back</a>
-					</div>
-				</div>
-			</form>
-		</div>
-	</body>
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/signup.js"></script>
+  </head>
+  <body ng-app="signup">
+    <ion-pane>
+      <ion-header-bar class="bar-energized">
+        <h1 class="title">ListMe</h1>
+      </ion-header-bar>
+      <ion-content>
+        <h3 class="title" style="text-align:center;color:blue"><b>Sign Up<b></h3>
+        <form ng-submit="login()">
+          <div class="list">
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Username</span>
+              <input type="text" placeholder="6 to 18 characters">
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">E-mail</span>
+              <input type="email" placeholder="E-mail">
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Password</span>
+              <input type="password" placeholder="at least 18 characters">
+            </label>
+            <label class="item item-input item-stacked-label">
+              <span class="input-label">Confirm Password</span>
+              <input type="password" placeholder="at least 18 characters">
+            </label>
+          </div>
+          <div class="padding">
+            <center>
+              <button type="submit" class="button button-energized">Sign Up</button>
+              <a class="button button-energized" ng-href="login.html">Back</a>
+            </center>
+          </div>
+        </form>
+      </ion-content>
+    </ion-pane>
+  </body>
 </html>
