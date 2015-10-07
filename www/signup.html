@@ -19,36 +19,37 @@
     <script src="cordova.js"></script>
 
   </head>
-  <body ng-app="signup">
+  <body ng-app="user">
     <ion-pane>
       <ion-header-bar class="bar-energized">
-        <h1 class="title">ListMe</h1>
+        <h1 class="title" style="text-align:center">ListMe</h1>
       </ion-header-bar>
       <ion-content>
         <h3 class="title" style="text-align:center;color:blue"><b>Sign Up<b></h3>
-        <form ng-submit="login()">
+        <form ng-submit="signup()" ng-controller="SignUpController">
           <div class="list">
             <label class="item item-input item-stacked-label">
               <span class="input-label">Username</span>
-              <input type="text" placeholder="6 to 18 characters">
+              <input type="text" ng-model="username" placeholder="6 to 18 characters">
             </label>
             <label class="item item-input item-stacked-label">
               <span class="input-label">E-mail</span>
-              <input type="email" placeholder="E-mail">
+              <input type="email" ng-model="email" placeholder="E-mail">
             </label>
             <label class="item item-input item-stacked-label">
               <span class="input-label">Password</span>
-              <input type="password" placeholder="at least 18 characters">
+              <input type="password" ng-model="password" placeholder="at least 18 characters">
             </label>
             <label class="item item-input item-stacked-label">
               <span class="input-label">Confirm Password</span>
-              <input type="password" placeholder="at least 18 characters">
+              <input type="password" ng-model="confirm_password" placeholder="at least 18 characters">
             </label>
+            <center><i style="color:red">{{message}}</i></center>
           </div>
           <div class="padding">
             <center>
               <button type="submit" class="button button-energized">Sign Up</button>
-              <a class="button button-energized" ng-href="login.html">Back</a>
+              <a class="button icon-left ion-chevron-left" ng-href="login.html">Back</a>
             </center>
           </div>
         </form>
@@ -56,6 +57,6 @@
     </ion-pane>
 
     <!-- your app's js -->
-    <script src="js/signup.js"></script>
+    <script src="js/user.js"></script>
   </body>
 </html>
