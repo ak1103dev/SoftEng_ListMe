@@ -27,7 +27,7 @@
       </ion-header-bar>
       <ion-content>
         <h3 class="title" style="text-align:center;color:blue"><b>Welcome<b></h3>
-        <form ng-submit="login()">
+        <form ng-submit="login()" ng-controller="LoginController">
           <div class="list">
             <label class="item item-input item-stacked-label">
               <span class="input-label">E-mail</span>
@@ -38,12 +38,13 @@
               <input type="password" placeholder="password">
             </label>
           </div>
+          <center><i style="color:red">{{message}}</i></center>
           <div class="padding">
             <center>
               <button type="submit" class="button button-energized">Login</button>
               <a class="button icon-right ion-chevron-right" ng-href="signup.html">Sign Up</a>
             </center>
-            <button class="button icon ion-social-facebook button-block button-positive ">   Login with Facebook</button>
+            <a class="button icon ion-social-facebook button-block button-positive" ng-href="https://www.facebook.com">   Login with Facebook</a>
             <button class="button icon ion-social-googleplus button-block button-assertive">   Login with Google+</button>
           </div>
         </form>
