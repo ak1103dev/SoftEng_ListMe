@@ -1,16 +1,6 @@
 var user = angular.module('user', ['ionic']);
-/*
-signup.config(function($routeProvider) {
-    $routeProvider
-    .when('/photos/:id', {
-        controller: 'PhotoController',
-        templateUrl: 'index.html'
-    })
-    .otherwise({
-        redirectTo: '/'
-    });
-});
-*/
+
+var host = 'http://research27.ml:1103';
 
 user.controller('SignUpController', ['$scope', '$http', '$window', function($scope, $http, $window) {
   $scope.signup = function() {
@@ -19,7 +9,7 @@ user.controller('SignUpController', ['$scope', '$http', '$window', function($sco
     }
     else {
       $scope.message = "";
-      $http.post('http://research27.ml:1103/signup', { 
+      $http.post(host + '/signup', { 
         "username": $scope.username, 
         "email": $scope.email, 
         "password": $scope.password 
@@ -28,16 +18,25 @@ user.controller('SignUpController', ['$scope', '$http', '$window', function($sco
           //$scope.message = data;
           if (data == 'signup')
             $window.location.href = 'login.html';
+          else
+            $scope.message = data;
       });
     }
   };  
 }]);
 
 user.controller('LoginController', ['$scope', '$http', '$window', function($scope, $http, $window) {
+  $http.post(host + '/host', {
+    "host": $window.location.href
+  })
+  .success(function(data) {
+    $scope.message = data;
+  });
+
   $scope.login = function() {
     $http.post('http://research27.ml:1103/login', { 
       "email": $scope.email, 
-      "password": $scope.password 
+      "password": $scope.password
     })
     .success(function(data) {
         if (data == 'main')
@@ -46,7 +45,22 @@ user.controller('LoginController', ['$scope', '$http', '$window', function($scop
           $scope.message = 'Incorrect email or password';
     });
   };
+  $scope.facebook = function() {
+    $http.get(host + '/auth/facebook/callback')
+    .success(function(data) {
+      console.log(data);
+      $window.location.href = 'index.html';
+    })
+  };
+  $scope.google = function() {
+    $http.get(host + '/auth/google')
+    .success(function(data) {
+      console.log(data);
+      //$window.location.href = 'index.html';
+    })
+  };
 }]);
+
 /*
 user.controller('PhotoController', ['$scope', 'photos', function($scope, photos) {
     photos.success(function(data) {

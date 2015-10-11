@@ -44,10 +44,15 @@
               <button type="submit" class="button button-energized">Login</button>
               <a class="button icon-right ion-chevron-right" ng-href="signup.html">Sign Up</a>
             </center>
-            <a class="button icon ion-social-facebook button-block button-positive" ng-href="https://www.facebook.com">   Login with Facebook</a>
-            <button class="button icon ion-social-googleplus button-block button-assertive">   Login with Google+</button>
           </div>
         </form>
+        <div class="padding" ng-controller="LoginController">
+          <!-- <button class="button icon ion-social-facebook button-block button-positive" ng-click="facebook()">   Login with Facebook</button> -->
+          <!-- <button class="button icon ion-social-googleplus button-block button-assertive" ng-click="google()">   Login with Google+</button> -->
+          <a class="button icon ion-social-facebook button-block button-positive" ng-href="http://research27.ml:1103/auth/facebook">   Login with Facebook</a>
+          <a class="button icon ion-social-googleplus button-block button-assertive" ng-href="http://research27.ml:1103/auth/google">   Login with Google+</a>
+        </div>
+            
       </ion-content>
     </ion-pane>
 
