@@ -1,4 +1,4 @@
-var user = angular.module('user', ['ionic']);
+var user = angular.module('user', ['ionic', 'ngStorage', 'ngCordova']);
 
 var host = 'http://research27.ml:1103';
 
@@ -15,7 +15,6 @@ user.controller('SignUpController', ['$scope', '$http', '$window', function($sco
         "password": $scope.password 
       })
       .success(function(data) {
-          //$scope.message = data;
           if (data == 'signup')
             $window.location.href = 'login.html';
           else
@@ -26,15 +25,8 @@ user.controller('SignUpController', ['$scope', '$http', '$window', function($sco
 }]);
 
 user.controller('LoginController', ['$scope', '$http', '$window', function($scope, $http, $window) {
-  $http.post(host + '/host', {
-    "host": $window.location.href
-  })
-  .success(function(data) {
-    $scope.message = data;
-  });
-
   $scope.login = function() {
-    $http.post('http://research27.ml:1103/login', { 
+    $http.post(host + '/login', { 
       "email": $scope.email, 
       "password": $scope.password
     })
@@ -45,21 +37,29 @@ user.controller('LoginController', ['$scope', '$http', '$window', function($scop
           $scope.message = 'Incorrect email or password';
     });
   };
-  $scope.facebook = function() {
-    $http.get(host + '/auth/facebook/callback')
-    .success(function(data) {
-      console.log(data);
-      $window.location.href = 'index.html';
-    })
-  };
-  $scope.google = function() {
-    $http.get(host + '/auth/google')
-    .success(function(data) {
-      console.log(data);
-      //$window.location.href = 'index.html';
-    })
-  };
 }]);
+
+user.controller('SocialController', function($scope, $window, $cordovaOauth) {
+  $scope.facebook = function() {
+    $cordovaOauth.facebook("103987536624323", ["email"]).then(function(result) {
+        $window.localStorage.accessToken = result.access_token;
+        $window.location.href = "index.html";
+    }, function(error) {
+        alert("There was a problem signing in!  See the console for logs");
+        console.log(error);
+    });
+  };
+
+  $scope.google = function() {
+    $cordovaOauth.google("514409452618-2ensbdk1oaeaqs4aik553mb3n7prt1oi.apps.googleusercontent.com ", ["email"]).then(function(result) {
+        //$window.localStorage.accessToken = result.access_token;
+        $window.location.href = "index.html";
+    }, function(error) {
+        alert("There was a problem signing in!  See the console for logs");
+        console.log(error);
+    });
+  };
+});
 
 /*
 user.controller('PhotoController', ['$scope', 'photos', function($scope, photos) {

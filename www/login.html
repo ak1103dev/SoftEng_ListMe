@@ -17,8 +17,12 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
+    <script src="js/ng-cordova.min.js"></script>
     <script src="cordova.js"></script>
+    <script src="js/ngStorage.min.js"></script>
     
+    <!-- your app's js -->
+    <script src="js/user.js"></script>
   </head>
   <body ng-app="user">
     <ion-pane>
@@ -46,17 +50,13 @@
             </center>
           </div>
         </form>
-        <div class="padding" ng-controller="LoginController">
-          <!-- <button class="button icon ion-social-facebook button-block button-positive" ng-click="facebook()">   Login with Facebook</button> -->
-          <!-- <button class="button icon ion-social-googleplus button-block button-assertive" ng-click="google()">   Login with Google+</button> -->
-          <a class="button icon ion-social-facebook button-block button-positive" ng-href="http://research27.ml:1103/auth/facebook">   Login with Facebook</a>
-          <a class="button icon ion-social-googleplus button-block button-assertive" ng-href="http://research27.ml:1103/auth/google">   Login with Google+</a>
+        <div class="padding" ng-controller="SocialController">
+          <button class="button icon ion-social-facebook button-block button-positive" ng-click="facebook()">   Login with Facebook</button>
+          <button class="button icon ion-social-googleplus button-block button-assertive" ng-click="google()">   Login with Google+</button>
+          <!-- <a class="button icon ion-social-facebook button-block button-positive" ng-href="http://research27.ml:1103/auth/facebook">   Login with Facebook</a>
+          <a class="button icon ion-social-googleplus button-block button-assertive" ng-href="http://research27.ml:1103/auth/google">   Login with Google+</a> -->
         </div>
-            
       </ion-content>
     </ion-pane>
-
-    <!-- your app's js -->
-    <script src="js/user.js"></script>
   </body>
 </html>

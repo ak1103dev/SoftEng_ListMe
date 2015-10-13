@@ -36,7 +36,7 @@ app.factory('Projects', function() {
   }
 });
 
-app.controller('TodoCtrl', function($scope, $timeout, $ionicModal, Projects, $ionicSideMenuDelegate, $ionicPopup) {
+app.controller('TodoCtrl', function($scope, $timeout, $ionicModal, Projects, $ionicSideMenuDelegate, $ionicPopup, $window) {
 
   // A utility function for creating a new project
   // with the given projectTitle
@@ -83,7 +83,8 @@ app.controller('TodoCtrl', function($scope, $timeout, $ionicModal, Projects, $io
     $ionicSideMenuDelegate.toggleLeft(false);
   };
   if($scope.projects.length == 0){
-    createProject("#Example");
+    //createProject("#Example");
+    createProject($window.localStorage.accessToken);
   }
 
 
