@@ -25,16 +25,23 @@ user.controller('SignUpController', ['$scope', '$http', '$window', function($sco
 }]);
 
 user.controller('LoginController', ['$scope', '$http', '$window', function($scope, $http, $window) {
+  //window.localStorage.clear();
+  $scope.message = window.localStorage;
   $scope.login = function() {
     $http.post(host + '/login', { 
       "email": $scope.email, 
       "password": $scope.password
     })
     .success(function(data) {
-        if (data == 'main')
-          $window.location.href = 'index.html';
-        else
+        if (data == 'login') {
           $scope.message = 'Incorrect email or password';
+        }
+        else {
+          //$window.localStorage.ID = data._id;
+          $window.localStorage.username = data;
+          //$scope.message = data;
+          $window.location.href = 'index.html';
+        }
     });
   };
 }]);
