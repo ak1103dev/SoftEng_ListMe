@@ -25,8 +25,7 @@ user.controller('SignUpController', ['$scope', '$http', '$window', function($sco
 }]);
 
 user.controller('LoginController', ['$scope', '$http', '$window', function($scope, $http, $window) {
-  //window.localStorage.clear();
-  $scope.message = window.localStorage;
+  window.localStorage.clear();
   $scope.login = function() {
     $http.post(host + '/login', { 
       "email": $scope.email, 
@@ -38,7 +37,9 @@ user.controller('LoginController', ['$scope', '$http', '$window', function($scop
         }
         else {
           //$window.localStorage.ID = data._id;
-          $window.localStorage.username = data;
+          $window.localStorage.username = data.local.username;
+          //$window.localStorage['projects'] = data.group;
+          $window.localStorage['projects'] = angular.toJson(data.group);
           //$scope.message = data;
           $window.location.href = 'index.html';
         }

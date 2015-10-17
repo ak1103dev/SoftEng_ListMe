@@ -10,6 +10,9 @@ angular.module('ListMe.controllers', ['ui.bootstrap.datetimepicker'])
 
 .controller('TodoCtrl', function($scope, $timeout, $ionicModal, Projects, $ionicSideMenuDelegate, $ionicPopup,$filter) {
   $scope.username = Projects.username();
+
+  // Projects.get();
+  // $scope.get = window.localStorage.mydata;
   // Projects.get().success(function(data) {
   //   $scope.get = data;
   // });
@@ -34,9 +37,7 @@ angular.module('ListMe.controllers', ['ui.bootstrap.datetimepicker'])
   };
   // Load or initialize projects
   $scope.projects = Projects.all();
-  // Projects.all().success(function(data) {
 
-  // });
   $scope.editing = false;
   // Grab the last active, or the first project
   $scope.activeProject = $scope.projects[Projects.getLastActiveIndex()];

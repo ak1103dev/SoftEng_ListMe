@@ -2,9 +2,18 @@ angular.module('ListMe.service', [])
 .factory('Projects', function($http) {
   var host = 'http://research27.ml:1103'
   return {
-    
     // get: function() {
-    //   return $http.get('https://s3.amazonaws.com/codecademy-content/courses/ltp4/photos-api/photos.json')
+    //   $http.get('https://s3.amazonaws.com/codecademy-content/courses/ltp4/photos-api/photos.json')
+    //     .success(function(data) {
+    //       console.log(data);
+    //       window.localStorage.mydata = angular.toJson(data);
+    //       return;
+    //     });
+    // },
+
+
+    // get: function() {
+    //   $http.get('https://s3.amazonaws.com/codecademy-content/courses/ltp4/photos-api/photos.json')
     //     .success(function(data) {
     //       return data;
     //     });
@@ -26,15 +35,6 @@ angular.module('ListMe.service', [])
     },
 
     all: function() {
-      // return $http.get(host + '/all')
-      //   .success(function(data) {
-      //     window.localStorage['projects'] = data;
-      //     var projectString = window.localStorage['projects'];
-      //     if(projectString) {
-      //       return angular.fromJson(projectString);
-      //     }
-      //     return [];
-      // })
       var projectString = window.localStorage['projects'];
       if(projectString) {
         return angular.fromJson(projectString);
@@ -42,8 +42,12 @@ angular.module('ListMe.service', [])
       return [];
     },
     save: function(projects) {
-      // console.log(projects);
       window.localStorage['projects'] = angular.toJson(projects);
+      $http.post(host + '/save', projects)
+      .success(function(data) {
+        // console.log(data);
+        return;
+      });
     },
     newProject: function(projectTitle) {
       // Add a new project
